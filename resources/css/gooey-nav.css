@@ -1,0 +1,76 @@
+@import "tailwindcss/preflight";
+@import "tailwindcss";
+
+:root {
+    --color-1: #ffffff;
+    --color-2: #60a5fa;
+    --color-3: #34d399;
+    --color-4: #f87171;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 9999px;
+    margin: 1rem auto;
+    max-width: fit-content;
+}
+
+.effect {
+    position: absolute;
+    z-index: 2;
+    border-radius: 9999px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.effect.filter {
+    filter: url(#gooey);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.effect.text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.effect.text.active {
+    opacity: 1;
+}
+
+.particle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(var(--scale)) rotate(var(--rotate));
+    animation: particle var(--time) ease forwards;
+}
+
+.point {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color);
+}
+
+@keyframes particle {
+    0% {
+        transform: translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(var(--scale)) rotate(var(--rotate));
+    }
+    100% {
+        transform: translate(-50%, -50%) translate(var(--end-x), var(--end-y)) scale(var(--scale)) rotate(var(--rotate));
+    }
+}
+
+li.active {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0.5px 1.5px rgba(255, 255, 255, 0.3);
+}
